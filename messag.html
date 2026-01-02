@@ -1,0 +1,19 @@
+<input type="email" id="email" placeholder="ایمیل خود را وارد کنید">
+<button onclick="showMessage()">ورود</button>
+
+<p id="message"></p>
+
+<script>
+const API = "https://script.google.com/macros/s/AKfycbzuWOSyrpIC9heu8EDch0HIDC3AEamiSnTfYxBOg1GETSVna4GNMaxkc1Q-vZS125PslQ/exec";
+
+function showMessage(){
+  const email = document.getElementById("email").value;
+
+  fetch(API + "?email=" + encodeURIComponent(email))
+    .then(res => res.text())
+    .then(text => {
+      document.getElementById("message").innerText =
+        text ? text : "پیامی برای شما وجود ندارد";
+    });
+}
+</script>
